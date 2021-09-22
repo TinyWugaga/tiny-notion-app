@@ -7,5 +7,15 @@ const debug = process.env.NODE_ENV !== 'production'
 
 module.exports = {
   reactStrictMode: true,
+  exportPathMap: function () {
+    return {
+      '/': { page: '/' },
+      '/skills': { page: '/skills' }
+    }
+  },
   assetPrefix: !debug ? '/tiny-notion-tool/' : '',
+  images: {
+    loader: "imgix",
+    path: "https://tinywugaga.github.io/tiny-notion-tool/",
+},
 }

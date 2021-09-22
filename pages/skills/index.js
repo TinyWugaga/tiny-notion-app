@@ -30,7 +30,7 @@ export default function Skills() {
     <SkillsPage title="Skills">
       <CardList>
         {categories?.map((category, index) => (
-          <Link key={index} href={`/skills/${category}`} passHref>
+          <Link key={index} href={`/skills/${category}`} as={process.env.BACKEND_URL +'/skills/' + category}>
             <a>
               <Card classes={cardClasses}>
                 {category}

@@ -20,7 +20,7 @@ const SkillsPage = ({ children, ...props }) => {
     const { category, title, sections } = props
 
     const Title = (title) => (
-        <Link href={'/skills'}>
+        <Link href={'/skills'} as={process.env.BACKEND_URL +'/skills'}>
             <a>{title}</a>
         </Link>
     )

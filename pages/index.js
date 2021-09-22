@@ -24,7 +24,7 @@ export default function Skills() {
   return (
     <SkillsPage title="Skills">
       <CardList>
-          <Link href={`/skills/`}>
+          <Link href={`/skills`} as={process.env.BACKEND_URL +'/skills'}>
             <a>
               <Card classes={cardClasses}>
                 Skills Board
