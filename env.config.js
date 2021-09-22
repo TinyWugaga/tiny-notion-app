@@ -1,5 +1,6 @@
 const prod = process.env.NODE_ENV === 'production'
+const vercelProd = process.env.DEPLOY_ENV === 'vercel'
 
 module.exports = {
-  'process.env.BACKEND_URL': prod ? '/tiny-notion-tool' : '',
+  'process.env.BACKEND_URL': (prod && !vercelProd) ? '/tiny-notion-app' : '',
 }

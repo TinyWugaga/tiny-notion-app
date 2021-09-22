@@ -1,9 +1,10 @@
-   
+
 // This file is not going through babel transformation.
 // So, we write it in vanilla JS
 // (But you could use ES2015 features supported by your Node.js version)
 
 const debug = process.env.NODE_ENV !== 'production'
+const vercelProd = process.env.DEPLOY_ENV === 'vercel'
 
 module.exports = {
   reactStrictMode: true,
@@ -13,9 +14,9 @@ module.exports = {
       '/skills': { page: '/skills' }
     }
   },
-  assetPrefix: !debug ? '/tiny-notion-tool/' : '',
+  assetPrefix: (!debug && !vercelProd) ? '/tiny-notion-app/' : '',
   images: {
     loader: "imgix",
-    path: "https://tinywugaga.github.io/tiny-notion-tool/",
-},
+    path: (!vercelProd) ? 'https://tinywugaga.github.io/tiny-notion-app/' : '',
+  }
 }
