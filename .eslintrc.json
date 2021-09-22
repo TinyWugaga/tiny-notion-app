@@ -1,3 +1,50 @@
 {
-  "extends": "next/core-web-vitals"
+  "extends": "next/core-web-vitals",
+  "rules": {
+    "block-scoped-var": "error", //强制把变量的使用限制在其定义的作用域范围内
+    "complexity": [
+      "error",
+      {
+        "max": 20
+      }
+    ], //指定程序中允许的最大环路复杂度
+    "consistent-return": "error", //要求 return 语句要么总是指定返回的值，要么不指定
+    "curly": [
+      "error",
+      "all"
+    ], //强制所有控制语句使用一致的括号风格
+    "default-case": "error", //要求 switch 语句中有 default 分支
+    "no-await-in-loop": "error", //禁止在循环中出现 await
+    "no-trailing-spaces": "error", //一行结束后面有空格就发出警告
+    "eol-last": 0, //文件以单一的换行符结束
+    "no-unused-vars": [
+      "error",
+      {
+        "ignoreRestSiblings": true
+      }
+    ], //不能有声明后未被使用的变量或参数
+    "no-use-before-define": 1, //禁止在变量定义之前使用它们
+    "no-alert": 2, //禁止使用alert confirm prompt
+    "no-lone-blocks": 0, //禁止不必要的嵌套块
+    "no-class-assign": 2, //禁止给类赋值
+    "no-cond-assign": 2, //禁止在条件表达式中使用赋值语句
+    "no-const-assign": 2, //禁止修改const声明的变量
+    "no-delete-var": 2, //不能对var声明的变量使用delete操作符
+    "no-dupe-keys": 2, //在创建对象字面量时不允许键重复
+    "no-duplicate-case": 2, //switch中的case标签不能重复
+    "no-dupe-args": 2, //函数参数不能重复
+    "no-empty": 2, //块语句中的内容不能为空
+    "no-func-assign": 2, //禁止重复的函数声明
+    "no-invalid-this": 0, //禁止无效的this，只能用在构造器，类，对象字面量
+    "no-redeclare": 2, //禁止重复声明变量
+    "no-spaced-func": 2, //函数调用时 函数名与()之间不能有空格
+    "no-this-before-super": 0, //在调用super()之前不能使用this或super
+    "no-undef": 2, //不能有未定义的变量
+    "camelcase": 0, //强制驼峰法命名
+    "no-var": "error",
+    "prefer-const": "error",
+    "prefer-arrow-callback": 1, //比较喜欢箭头回调
+    "arrow-parens": 0, //箭头函数用小括号括起来
+    "eqeqeq": 1 //要求使用 === 和 !==
+  }
 }

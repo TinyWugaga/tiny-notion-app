@@ -1,0 +1,17 @@
+:root {
+    --notion-color-default: rgba(230, 230, 230, 1);
+    --notion-color-gray: rgba(215, 215, 215, 1);
+    --notion-color-brown: rgba(230, 215, 208, 1);
+    --notion-color-orange: rgba(250, 225, 212, 1);
+    --notion-color-yellow: rgba(250, 240, 215, 1);
+    --notion-color-green: rgba(215, 230, 225, 1);
+    --notion-color-blue: rgba(215, 230, 250, 1);
+    --notion-color-purple: rgba(225, 215, 250, 1);
+    --notion-color-pink: rgba(245, 215, 230, 1);
+    --notion-color-red: rgba(250, 215, 215, 1);
+}
+
+.SkillsPage {
+    --header-height: 120px;
+    --footer-height: 80px;
+}
