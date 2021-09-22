@@ -1,4 +1,4 @@
-import { database } from 'api/notion'
+import { database } from 'notion'
 
 export default async function handler({
   method,
