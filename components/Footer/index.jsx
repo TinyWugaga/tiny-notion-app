@@ -42,7 +42,7 @@ const Footer = () => {
                     Powered by{' '}
                     <span className={styles.logo}>
                         <Image
-                            src="logo.svg"
+                            src={`${process.env.BACKEND_URL}/logo.svg`}
                             alt="TNT Logo"
                             width={72}
                             height={16}

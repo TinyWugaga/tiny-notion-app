@@ -1,3 +1,4 @@
 export const githubPageImageLoader = ({ src, width, quality }) => {
-    return `https://tinywugaga.github.io/teacher-schedule${process.env.BACKEND_URL}/${src}?w=${width}&q=${quality || 75}`
+    const githubDomain = 'https://tinywugaga.github.io' + process.env.BACKEND_URL
+    return `${githubDomain}/${src}?w=${width}&q=${quality || 75}`
 }
