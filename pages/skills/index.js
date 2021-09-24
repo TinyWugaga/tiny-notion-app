@@ -6,7 +6,7 @@ import {
   useFetchSkillCategories
 } from 'utils/notion/Databases/skills'
 
-import { databasesQueryHandler } from 'utils/notion/Databases/handler'
+// import { databasesQueryHandler } from 'utils/notion/Databases/handler'
 
 import SkillsPage from 'views/SkillsPage'
 import CardList from 'components/Cards/CardList'
@@ -44,7 +44,7 @@ const SkillCategoriesCardList = ({categories}) => (
 )
 
 export default function Skills() {
-  categories = useFetchSkillCategories(databaseId)
+  const categories = useFetchSkillCategories(databaseId)
 
   return (
     <SkillsPage
