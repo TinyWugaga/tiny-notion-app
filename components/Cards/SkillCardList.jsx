@@ -1,11 +1,9 @@
 import styled from 'styled-components'
 
-import { databaseId, useFetchSkillsByCategory } from 'utils/notion/Databases/skills'
-
-import SkillCard from 'components/Cards/SkillCard'
 import CardList from 'components/Cards/CardList'
+import SkillCard from 'components/Cards/SkillCard'
 
-const SkillCardList = styled(CardList)`
+const SkillCardListRoot = styled(CardList)`
     width: 100%;
 
     >div {
@@ -13,10 +11,9 @@ const SkillCardList = styled(CardList)`
     }
 `
 
-const SkillCardListComponent = ({ category }) => {
-    const skills = useFetchSkillsByCategory(databaseId, category)
+const SkillCardList = ({ skills }) => {
     return (
-        <SkillCardList>
+        <SkillCardListRoot>
             {
                 skills.length
                     ? skills.map((skill, index) =>
@@ -27,8 +24,8 @@ const SkillCardListComponent = ({ category }) => {
                     )
                     : (<div> Loading... </div>)
             }
-        </SkillCardList>
+        </SkillCardListRoot>
     )
 }
 
-export default SkillCardListComponent
+export default SkillCardList

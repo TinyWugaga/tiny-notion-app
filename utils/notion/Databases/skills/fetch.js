@@ -1,30 +1,38 @@
-import { useState } from 'react'
-
 import { keyBy, keys } from 'lodash'
 import axios from 'axios';
 import useSWR from 'swr'
 
-export const useFetchSkillCategories = (databaseId) => {
-    const [categories, setCategories] = useState([])
-
-    const skillCategoriesFetcher = async (url) => axios.post(url)
-        .then(res => {
-            const catagoriesName = keys(keyBy(res.data, 'properties.categories.select.name'))
-            setCategories(catagoriesName.filter(category => category !== 'undefined'))
-        })
-
-    const { data } = useSWR(
-        `/api/notion/databases/${databaseId}`,
-        skillCategoriesFetcher
-    )
-
-    return categories
+const skillsFetcher = async (databaseId, data) => {
+    const url = `/api/notion/databases/${databaseId}`
+    return axios.post(url, { ...data }).then(res => res.data)
 }
 
-export const useFetchSkillsByCategory = (databaseId, category) => {
-    const [skills, setSkills] = useState([])
+/*============================================
+ *== SkillCategories
+ *============================================*/
 
-    const skillsByCategoryFetcher = async (url, category) => axios.post(url, {
+export const getSkillCategoriesFromDataBase = (data) => {
+    const catagoriesName = keys(keyBy(data, 'properties.categories.select.name'))
+    return catagoriesName.filter(category => category !== 'undefined')
+}
+
+const skillCategoriesFetcher = async (databaseId) => {
+    return skillsFetcher(databaseId)
+        .then(data => getSkillCategoriesFromDataBase(data))
+        .catch(error => console.log('Fetch Skill Categories Failed:', error))
+}
+
+export const useFetchSkillCategories = (databaseId) => {
+    const { data } = useSWR(databaseId, skillCategoriesFetcher)
+    return data || []
+}
+
+/*============================================
+ *== SkillsByCategory
+ *============================================*/
+
+ export const skillsByCategoryFetcher = async (databaseId, category) => {
+    return skillsFetcher(databaseId, {
         filter: {
             property: 'categories',
             type: 'select',
@@ -32,15 +40,14 @@ export const useFetchSkillsByCategory = (databaseId, category) => {
                 equals: category
             }
         }
-    }).then(res => {
-        setSkills(res.data)
-        return res.data
     }).catch(error => console.log('Fetch Skills By Category Failed:', error))
+}
 
-    const { data } = useSWR(() => category ? [
-        `/api/notion/databases/${databaseId}`,
-        category
-    ] : null, skillsByCategoryFetcher)
+export const useFetchSkillsByCategory = (databaseId, category) => {
+    const { data } = useSWR(
+        () => category ? [databaseId, category] : null,
+        skillsByCategoryFetcher
+    )
 
-    return skills
+    return data || []
 }

@@ -1,5 +1,13 @@
 import styled from 'styled-components'
+
+import Link from 'next/link'
+
 import Head from './Head'
+import Header from 'components/Header'
+import Main from 'components/Main'
+import Section from 'components/Section'
+import Footer from 'components/Footer'
+
 
 const PageContainer = styled.div`
     min-height: 100vh;
@@ -15,12 +23,34 @@ const PageContainer = styled.div`
     ${({ classes }) => classes}
 `
 
+const Title = (title, link) => (
+    <Link href={link} as={process.env.BACKEND_URL +'/skills'}>
+        <a>{title}</a>
+    </Link>
+)
+
 const BasicLayout = ({ classes={}, className, children, ...props }) => {
-    const { title } = props
+    const { pageTitle, header, sections } = props
     return (
         <PageContainer className={className} classes={classes.root}>
-            <Head title={title} />
-            {children}
+            <Head title={pageTitle} />
+
+            <Header 
+                title={Title(header.title, header.link)}
+            />
+
+            <Main>
+                {sections?.map((section, index) => (
+                    <Section key={index}>
+                        <section.component {...section.props} />
+                    </Section>
+                ))}
+                {children && (
+                    <Section>{children}</Section>
+                )}
+            </Main>
+
+            <Footer />
         </PageContainer>
     )
 

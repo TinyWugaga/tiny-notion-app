@@ -1,7 +1,13 @@
 import { useRouter } from 'next/router'
 
-import SkillsPage from 'components/Pages/SkillsPage'
-import SkillCardList from 'components/Cards/SkillCardList'
+import {
+    databaseId,
+    getSkillCategoriesFromDataBase
+} from 'utils/notion/Databases/skills'
+
+import { databasesQueryHandler } from 'utils/notion/Databases/handler'
+
+import SkillsPage from 'views/SkillsPage'
 
 /* <Image src="/images/room-background.png" alt="room" width="100%" height="100%" /> */
 
@@ -11,16 +17,62 @@ export default function SkillsCategory() {
 
     return (
         <SkillsPage
-            category={category || ''}
+            category={category}
             title={`Skills ${category || ''}`}
-            sections={
-                [
-                    {
-                        name: 'SkillCardList',
-                        component: SkillCardList
-                    }
-                ]
-            }
         />
     )
+}
+
+export async function getStaticProps(context) {
+    const { params } = context
+
+    try {
+        const category = await databasesQueryHandler(databaseId, {
+            filter: {
+                property: 'categories',
+                type: 'select',
+                option: {
+                    equals: params.category
+                }
+            }
+        })
+
+        return {
+            props: {
+                category
+            },
+            revalidate: 10
+        }
+    } catch (e) {
+        console.log(`Generating page for /skills/${params.category} Error`, e)
+        return {
+            props: {
+                error: JSON.parse(JSON.stringify(e))
+            }
+        }
+    }
+}
+
+export async function getStaticPaths() {
+    try {
+        const data = await databasesQueryHandler(databaseId, {})
+        const categories = getSkillCategoriesFromDataBase(data)
+
+        return {
+            paths: categories?.map(category => {
+                return {
+                    params: { category }
+                }
+            }),
+            fallback: false
+        }
+
+    } catch (e) {
+        console.log('Pre-rendering Skill Categories Page', e)
+        return {
+            props: {
+                error: JSON.parse(JSON.stringify(e))
+            }
+        }
+    }
 }

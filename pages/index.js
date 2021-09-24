@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-import SkillsPage from 'components/Pages/SkillsPage'
+import SkillsPage from 'views/SkillsPage'
 import CardList from 'components/Cards/CardList'
 import Card from 'components/Cards/Card'
 
@@ -20,7 +20,7 @@ const cardClasses = {
   }
 }
 
-export default function Skills() {
+export default function Home() {
   return (
     <SkillsPage title="Skills">
       <CardList>

@@ -1,4 +1,4 @@
-import { database } from 'notion'
+import { databasesQueryHandler } from 'utils/notion/Databases/handler'
 
 export default async function handler({
   method,
@@ -9,15 +9,7 @@ export default async function handler({
   console.log('Database Request:', method, body)
 
   try {
-    if (method === 'POST') {
-      const { filter, filters, sorts } = body
-
-      filter && database.filter(filter)
-      filters && database.compoundFilter(filters)
-      sorts && database.sorts(sorts)
-    }
-
-    const resp = await database.query(databaseId)
+    const resp = await databasesQueryHandler(databaseId, body)
     res.status(200).json(resp)
   } catch (error) {
     // TODO: Design APIError
