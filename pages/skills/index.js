@@ -2,11 +2,8 @@ import Link from 'next/link'
 
 import {
   databaseId,
-  // getSkillCategoriesFromDataBase,
   useFetchSkillCategories
 } from 'utils/notion/Databases/skills'
-
-// import { databasesQueryHandler } from 'utils/notion/Databases/handler'
 
 import SkillsPage from 'views/SkillsPage'
 import CardList from 'components/Cards/CardList'
@@ -59,24 +56,3 @@ export default function Skills() {
     />
   )
 }
-
-// export async function getServerSideProps(context) {
-//   console.log('Pre-rendering Skill Categories Page')
-//   try {
-//     const data = await databasesQueryHandler(databaseId, {})
-//     const categories = getSkillCategoriesFromDataBase(data)
-
-//     return {
-//       props: {
-//         categories: JSON.parse(JSON.stringify(categories))
-//       }
-//     }
-//   } catch (e) {
-//     console.log('Pre-rendering Skill Categories Page', e)
-//     return {
-//       props: {
-//         error: JSON.parse(JSON.stringify(e))
-//       }
-//     }
-//   }
-// }

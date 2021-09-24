@@ -20,18 +20,29 @@ const cardClasses = {
   }
 }
 
+const HomeMenuCardList = () => (
+  <CardList>
+    <Link href={`/skills`} as={process.env.BACKEND_URL + '/skills'}>
+      <a>
+        <Card classes={cardClasses}>
+          Skills Board
+        </Card>
+      </a>
+    </Link>
+  </CardList>
+)
+
 export default function Home() {
   return (
-    <SkillsPage title="Skills">
-      <CardList>
-          <Link href={`/skills`} as={process.env.BACKEND_URL +'/skills'}>
-            <a>
-              <Card classes={cardClasses}>
-                Skills Board
-              </Card>
-            </a>
-          </Link>
-      </CardList>
-    </SkillsPage>
+    <SkillsPage 
+      title="Skills"
+      sections={[
+        {
+          name: 'HomeMenuCardList',
+          component: HomeMenuCardList,
+          props: {}
+        }
+      ]}
+    />
   )
 }

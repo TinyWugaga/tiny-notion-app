@@ -1,6 +1,5 @@
 import styled from 'styled-components'
 
-// import Image from 'next/image'
 import { default as Logo } from 'assets/Logo'
 
 import styles from 'styles/Page.module.css'
