@@ -2,7 +2,7 @@ import Link from 'next/link'
 
 import {
   databaseId,
-  getSkillCategoriesFromDataBase,
+  // getSkillCategoriesFromDataBase,
   useFetchSkillCategories
 } from 'utils/notion/Databases/skills'
 
@@ -43,10 +43,8 @@ const SkillCategoriesCardList = ({categories}) => (
   </CardList>
 )
 
-export default function Skills({ categories, error }) {
-  if (error) console.log(error)
-  console.log('categories', categories)
-  categories = categories || useFetchSkillCategories(databaseId) || []
+export default function Skills() {
+  categories = useFetchSkillCategories(databaseId)
 
   return (
     <SkillsPage
@@ -62,23 +60,23 @@ export default function Skills({ categories, error }) {
   )
 }
 
-export async function getServerSideProps(context) {
-  console.log('Pre-rendering Skill Categories Page')
-  try {
-    const data = await databasesQueryHandler(databaseId, {})
-    const categories = getSkillCategoriesFromDataBase(data)
+// export async function getServerSideProps(context) {
+//   console.log('Pre-rendering Skill Categories Page')
+//   try {
+//     const data = await databasesQueryHandler(databaseId, {})
+//     const categories = getSkillCategoriesFromDataBase(data)
 
-    return {
-      props: {
-        categories: JSON.parse(JSON.stringify(categories))
-      }
-    }
-  } catch (e) {
-    console.log('Pre-rendering Skill Categories Page', e)
-    return {
-      props: {
-        error: JSON.parse(JSON.stringify(e))
-      }
-    }
-  }
-}
+//     return {
+//       props: {
+//         categories: JSON.parse(JSON.stringify(categories))
+//       }
+//     }
+//   } catch (e) {
+//     console.log('Pre-rendering Skill Categories Page', e)
+//     return {
+//       props: {
+//         error: JSON.parse(JSON.stringify(e))
+//       }
+//     }
+//   }
+// }
