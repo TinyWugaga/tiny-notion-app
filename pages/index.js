@@ -34,7 +34,7 @@ const HomeMenuCardList = () => (
 
 export default function Home() {
   return (
-    <SkillsPage 
+    <SkillsPage
       title="Skills"
       sections={[
         {
