@@ -1,6 +1,7 @@
 import styled from 'styled-components'
 
-import Image from 'next/image'
+// import Image from 'next/image'
+import Logo from 'public/logo.svg'
 
 import styles from 'styles/Page.module.css'
 
@@ -41,9 +42,7 @@ const Footer = () => {
                 >
                     Powered by{' '}
                     <span className={styles.logo}>
-                        <Image
-                            src={`${process.env.BACKEND_URL}/logo.svg`}
-                            alt="TNT Logo"
+                        <Logo
                             width={72}
                             height={16}
                         />
