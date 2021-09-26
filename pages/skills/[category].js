@@ -31,29 +31,9 @@ export default function SkillsCategory() {
 export async function getStaticProps(context) {
     const { params } = context
 
-    try {
-        const category = await databasesQueryHandler(databaseId, {
-            filter: {
-                property: 'categories',
-                type: 'select',
-                option: {
-                    equals: params.category
-                }
-            }
-        })
-
-        return {
-            props: {
-                category
-            },
-            revalidate: 10
-        }
-    } catch (e) {
-        console.log(`Generating page for /skills/${params.category} Error`, e)
-        return {
-            props: {
-                error: JSON.parse(JSON.stringify(e))
-            }
+    return {
+        props: {
+            category: params.category
         }
     }
 }
@@ -73,11 +53,6 @@ export async function getStaticPaths() {
         }
 
     } catch (e) {
-        console.log('Pre-rendering Skill Categories Page', e)
-        return {
-            props: {
-                error: JSON.parse(JSON.stringify(e))
-            }
-        }
+        console.log('Get StaticPaths of Skill Categories Page Failed', e)
     }
 }

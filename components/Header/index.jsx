@@ -45,12 +45,18 @@ const HeaderIcon = styled.span`
     vertical-align: middle;
 `
 
-const HeaderTitle = forwardRef(({ onClick, href, icon, title }, ref) => (
-    <a href={href} onClick={onClick} ref={ref}>
+const HeaderTitle = ({ icon, title }) => (
+    <>
         {icon && (
             <HeaderIcon>{icon}</HeaderIcon>
         )}
         {title}
+    </>
+)
+
+const HeaderLinkTitle = forwardRef(({ onClick, href, ...props }, ref) => (
+    <a href={href} onClick={onClick} ref={ref}>
+        <HeaderTitle {...props} />
     </a>
 ))
 
@@ -61,13 +67,19 @@ const Header = (props) => {
     return (
         <HeaderRoot>
             <HeaderContainer>
-                <Link
-                    href={link}
-                    as={process.env.BACKEND_URL + '/skills'}
-                    passHref
-                >
-                    <HeaderTitle icon={icon} title={title} />
-                </Link>
+                {
+                    link
+                        ? (
+                            <Link
+                                href={link}
+                                as={process.env.BACKEND_URL + '/skills'}
+                                passHref
+                            >
+                                <HeaderLinkTitle icon={icon} title={title} />
+                            </Link>
+                        )
+                        : (<HeaderTitle icon={icon} title={title}/>)
+                }
             </HeaderContainer>
         </HeaderRoot>
     )

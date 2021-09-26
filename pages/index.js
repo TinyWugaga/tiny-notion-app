@@ -33,9 +33,14 @@ const HomeMenuCardList = () => (
 )
 
 export default function Home() {
+  const header = {
+    title: 'Tiny Profile',
+    link: ''
+  }
+
   return (
     <SkillsPage
-      title="Skills"
+      header={header}
       sections={[
         {
           name: 'HomeMenuCardList',
