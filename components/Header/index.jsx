@@ -54,6 +54,8 @@ const HeaderTitle = forwardRef(({ onClick, href, icon, title }, ref) => (
     </a>
 ))
 
+HeaderTitle.displayName = 'HeaderTitle'
+
 const Header = (props) => {
     const { icon, title, link } = props
     return (
