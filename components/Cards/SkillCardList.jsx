@@ -4,6 +4,7 @@ import CardList from 'components/Cards/CardList'
 import SkillCard from 'components/Cards/SkillCard'
 
 const SkillCardListRoot = styled(CardList)`
+    padding: .8rem 0;
     width: 100%;
 
     >div {

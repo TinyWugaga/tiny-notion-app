@@ -1,6 +1,9 @@
+import { forwardRef } from 'react'
 import styled from 'styled-components'
 
-const HeaderWrapper = styled.div`
+import Link from 'next/link'
+
+const HeaderRoot = styled.div`
     position: absolute;
     width: 100%;
     height: var(--header-height);
@@ -15,32 +18,56 @@ const HeaderWrapper = styled.div`
     margin-bottom: 25px;
 `
 
-const HeaderTitle = styled.h1`
+const HeaderContainer = styled.h1`
     position: relative;
     width: 100%;
     height: 100%;
     margin: auto;
 
-    font-family: Raleway;
+    font-family: 'Raleway';
     font-style: normal;
-    font-weight: normal;
+    font-weight: 400;
     font-size: 3rem;
     line-height: 1.2;
     text-align: center;
     color: #565656;
     
     display: flex;
+    justify-content: flex-start;
     align-items: center;
 
-    text-transform: capitalize;
+    text-transform: uppercase;
 `
 
+const HeaderIcon = styled.span`
+    height: 100%;
+    margin-right: 0.5rem;
+    vertical-align: middle;
+`
+
+const HeaderTitle = forwardRef(({ onClick, href, icon, title }, ref) => (
+    <a href={href} onClick={onClick} ref={ref}>
+        {icon && (
+            <HeaderIcon>{icon}</HeaderIcon>
+        )}
+        {title}
+    </a>
+))
+
 const Header = (props) => {
-    const { title } = props
+    const { icon, title, link } = props
     return (
-        <HeaderWrapper>
-            <HeaderTitle>{title}</HeaderTitle>
-        </HeaderWrapper>
+        <HeaderRoot>
+            <HeaderContainer>
+                <Link
+                    href={link}
+                    as={process.env.BACKEND_URL + '/skills'}
+                    passHref
+                >
+                    <HeaderTitle icon={icon} title={title} />
+                </Link>
+            </HeaderContainer>
+        </HeaderRoot>
     )
 
 }

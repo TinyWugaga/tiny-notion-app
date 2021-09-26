@@ -1,7 +1,5 @@
 import styled from 'styled-components'
 
-import Link from 'next/link'
-
 import Head from './Head'
 import Header from 'components/Header'
 import Main from 'components/Main'
@@ -23,21 +21,13 @@ const PageContainer = styled.div`
     ${({ classes }) => classes}
 `
 
-const Title = (title, link) => (
-    <Link href={link} as={process.env.BACKEND_URL +'/skills'}>
-        <a>{title}</a>
-    </Link>
-)
-
 const BasicLayout = ({ classes={}, className, children, ...props }) => {
     const { pageTitle, header, sections } = props
     return (
         <PageContainer className={className} classes={classes.root}>
             <Head title={pageTitle} />
 
-            <Header 
-                title={Title(header.title, header.link)}
-            />
+            <Header { ...header }/>
 
             <Main>
                 {sections?.map((section, index) => (

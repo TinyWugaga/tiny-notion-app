@@ -13,12 +13,7 @@ const classes = {
 }
 
 const SkillsPage = ({ children, ...props }) => {
-    const { category, title, sections } = props
-
-    const header = {
-        title,
-        link: '/skills'
-    }
+    const { category, header, sections } = props
 
     const skills = useFetchSkillsByCategory(databaseId, category)
 

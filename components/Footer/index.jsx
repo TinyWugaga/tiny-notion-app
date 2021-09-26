@@ -2,8 +2,6 @@ import styled from 'styled-components'
 
 import { default as Logo } from 'assets/Logo'
 
-import styles from 'styles/Page.module.css'
-
 const FooterRoot = styled.footer`
     width: 100%;
     padding-top: var(--footer-height);
@@ -11,7 +9,7 @@ const FooterRoot = styled.footer`
     bottom: 0%;
     border-top: 1px solid #919ea4;
 
-    background: rgba(0, 0, 0, 0.05);
+    background: rgba(40, 50, 80, 0.1);
 `
 
 const FooterWrapper = styled.div`
@@ -27,7 +25,13 @@ const FooterWrapper = styled.div`
   
     a {
         display: inline-block;
+        line-height: 1.5;
     }
+`
+
+const FooterLogo = styled.span`
+    margin-left: 0.2rem;
+    vertical-align: middle;
 `
 
 const Footer = () => {
@@ -40,12 +44,12 @@ const Footer = () => {
                     rel="noopener noreferrer"
                 >
                     Powered by{' '}
-                    <span className={styles.logo}>
+                    <FooterLogo>
                         <Logo
-                            width={72}
-                            height={16}
+                            width={110}
+                            height={30}
                         />
-                    </span>
+                    </FooterLogo>
                 </a>
             </FooterWrapper>
         </FooterRoot>

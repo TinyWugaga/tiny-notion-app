@@ -6,7 +6,7 @@ import Card from 'components/Cards/Card'
 
 const cardClasses = {
   root: {
-    width: '150px',
+    width: '250px',
     height: '120px',
   },
   content: {

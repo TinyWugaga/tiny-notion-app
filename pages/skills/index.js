@@ -26,7 +26,7 @@ const cardClasses = {
   }
 }
 
-const SkillCategoriesCardList = ({categories}) => (
+const SkillCategoriesCardList = ({ categories }) => (
   <CardList>
     {categories?.map((category, index) => (
       <Link key={index} href={`/skills/${category}`} as={process.env.BACKEND_URL + '/skills/' + category}>
@@ -43,9 +43,14 @@ const SkillCategoriesCardList = ({categories}) => (
 export default function Skills() {
   const categories = useFetchSkillCategories(databaseId)
 
+  const header = {
+    title: 'SKILLS',
+    link: ''
+  }
+
   return (
     <SkillsPage
-      title="Skills"
+      header={header}
       sections={[
         {
           name: 'SkillCategoriesCardList',

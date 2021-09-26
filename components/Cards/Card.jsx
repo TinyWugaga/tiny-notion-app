@@ -2,17 +2,17 @@ import styled from 'styled-components'
 
 const CardRoot = styled.div`
     position: relative;
-    width: calc(25% - 1.4rem);
+    width: calc(25% - 2rem);
     max-width: 387px;
 
     height: 150px;
     max-height: 100%;
 
-    margin: 1rem .7rem;
+    margin: 1.2rem 1rem;
 
     background-color: #fdfdfd;
-    border: 1px solid grey;
-    border-radius: 5px;
+    border: 1px solid rgba(50,50,50,0.2);
+    border-radius: 20px;
     box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2); 
     
     cursor: pointer;
