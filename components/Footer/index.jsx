@@ -39,7 +39,7 @@ const Footer = () => {
         <FooterRoot>
             <FooterWrapper>
                 <a
-                    href="https://scratch-carbon-250.notion.site/Hello-This-is-Tiny-cd0c13d727ec4c7197d91b7346ac57ab"
+                    href="https://tiny-box.notion.site/tiny-box/Hello-This-is-Tiny-cd0c13d727ec4c7197d91b7346ac57ab"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
