@@ -21,13 +21,13 @@ const PageContainer = styled.div`
     ${({ classes }) => classes}
 `
 
-const BasicLayout = ({ classes={}, className, children, ...props }) => {
+const BasicLayout = ({ classes = {}, className, children, ...props }) => {
     const { pageTitle, header, sections } = props
     return (
         <PageContainer className={className} classes={classes.root}>
             <Head title={pageTitle} />
 
-            <Header { ...header }/>
+            <Header {...header} />
 
             <Main>
                 {sections?.map((section, index) => (
