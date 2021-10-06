@@ -22,8 +22,8 @@ export default class MyDocument extends Document {
                     function gtag(){dataLayer.push(arguments);}
                     gtag('js', new Date());
                     gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
-                    page_path: window.location.pathname,
-                    ${process.env.NODE_ENV === 'development' && "debug_event: 1,traffic_type : 'internal'"}
+                    page_path: window.location.pathname
+                    ${(process.env.NODE_ENV === 'development' && ",debug_event: 1,traffic_type : 'internal'") || ''}
                     });
                 `,
             }}
